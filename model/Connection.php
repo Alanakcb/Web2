@@ -7,7 +7,7 @@ final class Connection
   }
   public static function open()
   {
-    $type = "msql";
+    $type = "mysql";
     $user = "alunos";
     $pass = "cefetmg";
     $name = "alunos";
