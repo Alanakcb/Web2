@@ -9,6 +9,10 @@ class Form
   public function controller()
   {
     $form = new Template("view/form.html");
+    $form->set("id", "");
+    $form->set("tarefa", "");
+    $form->set("data", "");
+    $form->set("horario", "");
     $this->message = $form->saida();
   }
   public function salvar()
@@ -21,6 +25,23 @@ class Form
         $data = $conexao->quote($_POST["data"]);
         $horario = $conexao->quote($_POST["horario"]);
         $resultado = $agenda->insert("tarefa, data, horario", "$tarefa, $data, $horario");
+      } catch (Exception $e) {
+        echo $e->getMessage();
+      }
+    }
+  }
+  public function editar(){
+    if (isset($_GET["id"])) {
+      try {
+        $conexao = Transaction::get();
+        $id = $conexao->quote($_GET["id"]);
+        $agenda = new Crud("agenda");
+        $resultado = $agenda->select("*", "id = $id");
+        $form = new Template("view/form.html");
+        foreach ($resultado[0] as $cod => $valor) {
+          $form->set($cod, $valor);
+        }
+        $this->message = $form->saida();
       } catch (Exception $e) {
         echo $e->getMessage();
       }

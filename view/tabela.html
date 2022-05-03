@@ -15,18 +15,23 @@
         <td>{data}</td>
         <td>{horario}</td>
         <td>
-            <button type="button">Editar</button>
-          </td>
-          <td>
-            <button
-              type="button"
-              onclick="if(confirm('Deseja realmente apagar?'))
-                location.href='?class=Tabela&method=remover&id={id}'"
-            >
-              Remover
-            </button>
-          </td>
-        </tr>
-        {/linha}
-      </tbody>
-    </table>
+          <button
+          type="button"
+          onclick="location.href='?class=Form&method=editar&id={id}'"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          onclick="if(confirm('Deseja realmente apagar?'))
+            location.href='?class=Tabela&method=remover&id={id}'"
+        >
+          Remover
+        </button>
+      </td>
+    </tr>
+    {/linha}
+  </tbody>
+</table>
