@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 03/05/2022 às 08:27
+-- Tempo de geração: 10/05/2022 às 07:19
 -- Versão do servidor: 5.7.37-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.34-28+ubuntu18.04.1+deb.sury.org+1
 
@@ -23,24 +23,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `agenda`
+-- Estrutura para tabela `tvbox`
 --
 
-CREATE TABLE `agenda` (
+CREATE TABLE `tvbox` (
   `id` int(11) NOT NULL,
-  `tarefa` varchar(150) NOT NULL,
-  `data` date NOT NULL,
-  `horario` time NOT NULL
+  `modelo` varchar(150) NOT NULL,
+  `processador` date NOT NULL,
+  `sistemaoperacional` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Fazendo dump de dados para tabela `agenda`
+-- Fazendo dump de dados para tabela `tvbox`
 --
 
-INSERT INTO `agenda` (`id`, `tarefa`, `data`, `horario`) VALUES
-(3, 'biologia', '2022-07-06', '12:34:00'),
-(4, 'biologiaa', '2022-07-06', '12:34:00'),
-(5, 'historia', '2022-07-06', '12:34:00');
+INSERT INTO `tvbox` (`id`, `modelo`, `processador`, `sistemaoperacional`) VALUES
+(4, 'biologia', '2022-07-06', '12:34:00'),
+(5, 'historia', '2022-07-06', '12:34:00'),
+(6, 'web2', '2022-05-03', '08:31:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tvbox`
+--
+
+CREATE TABLE `tvbox` (
+  `id` int(11) NOT NULL,
+  `modelo` varchar(10) NOT NULL,
+  `processador` varchar(255) NOT NULL,
+  `sistemaoperacional` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -60,9 +73,15 @@ CREATE TABLE `usuario` (
 --
 
 --
--- Índices de tabela `agenda`
+-- Índices de tabela `tvbox`
 --
-ALTER TABLE `agenda`
+ALTER TABLE `tvbox`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tvbox`
+--
+ALTER TABLE `tvbox`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -76,10 +95,15 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de tabela `agenda`
+-- AUTO_INCREMENT de tabela `tvbox`
 --
-ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `tvbox`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de tabela `tvbox`
+--
+ALTER TABLE `tvbox`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --

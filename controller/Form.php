@@ -11,34 +11,34 @@ class Form
   {
     $form = new Template("view/form.html");
     $form->set("id", "");
-    $form->set("tarefa", "");
-    $form->set("data", "");
-    $form->set("horario", "");
+    $form->set("modelo", "");
+    $form->set("processador", "");
+    $form->set("sistemaoperacional", "");
     $this->message = $form->saida();
   }
   public function salvar()
   {
-    if (isset($_POST["tarefa"]) && isset($_POST["data"]) && isset($_POST["horario"])) {
+    if (isset($_POST["modelo"]) && isset($_POST["processador"]) && isset($_POST["sistemaoperacional"])) {
       try {
         $conexao = Transaction::get();
-        $agenda = new Crud("agenda");
-        $tarefa = $conexao->quote($_POST["tarefa"]);
-        $data = $conexao->quote($_POST["data"]);
-        $horario = $conexao->quote($_POST["horario"]);
+        $tvbox = new Crud("tvbox");
+        $modelo = $conexao->quote($_POST["modelo"]);
+        $processador = $conexao->quote($_POST["processador"]);
+        $sistemaoperacional = $conexao->quote($_POST["sistemaoperacional"]);
         if (empty($_POST["id"])) {
-          $agenda->insert(
-            "tarefa, data, horario",
-            "$tarefa, $data, $horario"
+          $tvbox->insert(
+            "modelo, processador, sistemaoperacional",
+            "$modelo, $processador, $sistemaoperacional"
           );
         } else {
           $id = $conexao->quote($_POST["id"]);
-          $agenda->update(
-            "tarefa = $tarefa, data = $data, horario = $horario",
+          $tvbox->update(
+            "modelo = $modelo, processador = $processador, sistemaoperacional = $sistemaoperacional",
             "id = $id"
           );
         }
-        $this->message = $agenda->getMessage();
-        $this->error = $agenda->getError();
+        $this->message = $tvbox->getMessage();
+        $this->error = $tvbox->getError();
       } catch (Exception $e) {
         $this->message = $e->getMessage();
         $this->error = true;
@@ -54,16 +54,16 @@ class Form
       try {
         $conexao = Transaction::get();
         $id = $conexao->quote($_GET["id"]);
-        $agenda = new Crud("agenda");
-        $resultado = $agenda->select("*", "id = $id");
-        if (!$agenda->getError()) {
+        $tvbox = new Crud("tvbox");
+        $resultado = $tvbox->select("*", "id = $id");
+        if (!$tvbox->getError()) {
           $form = new Template("view/form.html");
-          foreach ($resultado[0] as $cod => $horario) {
-            $form->set($cod, $horario);
+          foreach ($resultado[0] as $cod => $sistemaoperacional) {
+            $form->set($cod, $sistemaoperacional);
           }
           $this->message = $form->saida();
         } else {
-          $this->message = $agenda->getMessage();
+          $this->message = $tvbox->getMessage();
           $this->error = true;
         }
       } catch (Exception $e) {
