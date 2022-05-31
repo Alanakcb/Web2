@@ -3,7 +3,7 @@
 spl_autoload_extensions('.php');
 function classLoader($class)
 {
-  $nomeArquivo = $class."php";
+  $nomeArquivo = $class.".php";
   $pastas = array(
     "shared/controller",
     "shared/model",
@@ -11,7 +11,7 @@ function classLoader($class)
     "public/model"
 );
   foreach ($pastas as $pasta) {
-    $arquivo = "{$pasta}/{$nomeArquivo}.php";
+    $arquivo = "{$pasta}/{$nomeArquivo}";
     if (file_exists($arquivo)) {
       require_once($arquivo);
     }
@@ -25,7 +25,7 @@ Session::freeSession();
 // Front Controller
 class Aplicacao
 {
-  static private $app = "/model";
+  static private $app = "/Alana";
   public static function run()
   {
     $layout = new Template('public/view/layout.html');

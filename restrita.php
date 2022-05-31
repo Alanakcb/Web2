@@ -3,7 +3,7 @@
 spl_autoload_extensions('.php');
 function classLoader($class)
 {
-  $nomeArquivo = $class."php";
+  $nomeArquivo = $class.".php";
   $pastas = array(
     "shared/controller",
     "shared/model",
@@ -11,7 +11,7 @@ function classLoader($class)
     "restrict/model"
 );
   foreach ($pastas as $pasta) {
-    $arquivo = "{$pasta}/{$nomeArquivo}.php";
+    $arquivo = "{$pasta}/{$nomeArquivo}";
     if (file_exists($arquivo)) {
       require_once($arquivo);
     }
@@ -27,8 +27,8 @@ if(!Session::getValue("id")){
 // Front Controller
 class Aplicacao
 {
-  static public $app = "/modelo";
-  static private $uri = "/modelo/restrita.php";
+  static public $path = "/Alana";
+  static private $uri = "/Alana/restrita.php";
   public static function run()
   {
     $layout = new Template('restrict/view/layout.html');
